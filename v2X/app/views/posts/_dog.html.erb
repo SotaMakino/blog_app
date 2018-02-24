@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Workspace</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <header>
+    <p id="logo"><a>RailsCamp<span>Blog</span></a></p>
+    <nav>
+        <ul>
+           <li><% if user_signed_in? %></li>
+           <li><a><%= link_to "トップ", root_path %></a></li>
+           <li><a><%= link_to "新規投稿", new_post_path %></a></li>
+           <li><a><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></a></li>
+           <li><% else %></li>
+           <li><a><%= link_to "トップ", root_path %></a></li>
+           <li><a><%= link_to "ユーザー登録", new_user_registration_path %></a></li>
+           <li><a><%= link_to "ログイン", new_user_session_path %></a></li>
+           <li> <% end %></li>
+           <div class="clear"></div>
+        </ul>
+    </nav>
+    <div class="clear"></div>
+  </header>

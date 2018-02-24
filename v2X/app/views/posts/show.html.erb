@@ -1,0 +1,25 @@
+<%= render :partial => "dog" %>
+
+<div id="title">
+  <div>
+<p>
+  <%= @post.created_at.strftime("%Y年%m月%d日") %><br>
+  <h1><%= @post.title %></h1>
+
+
+
+
+
+
+</p>
+</div>
+</div>
+<div id="article_wrap">
+    <div id="content">
+<p>
+  <%= @post.content %>
+</p>
+</div>
+
+
+<%= link_to 'Back', posts_path %>

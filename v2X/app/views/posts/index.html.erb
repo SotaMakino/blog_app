@@ -1,0 +1,51 @@
+
+<%= render :partial => "dog" %>
+<body>
+<div id="main">
+  <%= image_tag "main-img.png" %>
+</div>
+
+<div id="article_wrap">
+  <div id="article_list">
+    <div>
+        <% @posts.each do |post| %>
+
+        <% if user_signed_in? %>
+    <h2><a><%= link_to "#{post.title}", post %></a></h2>
+        <p><%= post.created_at.strftime("%Y年%m月%d日") %></p>
+        <a><%= link_to '編集', edit_post_path(post) %></a>
+        <a><%= link_to "削除",post, method: :delete %></a>
+      </p>
+        <% else %>
+     <h2><a><%= post.title %></a></h2>
+      <p><a><%= post.created_at.strftime("%Y年%m月%d日") %></a></p>
+    </p>
+    </div>
+  </div>
+
+</div>
+
+        <% end %>
+   <% end %>
+
+
+<div>
+     <h2>★PV数ランキング</h2>
+        <%= rank = REDIS.zrevrange "myrank", 0, -1, withscores: true %>
+        <% @rank_posts = Post.where(id: rank) %>
+        <% @rank_posts.each do |rank_post|  %>
+        <%= rank_post.title %>
+        <% end %>
+
+
+
+
+
+ </div>
+</body>
+
+   <footer>
+       <div id="footer_inner">
+           <p>Copyright RailsCamp 2018 All Rights Reserved</p>
+      </div>
+   </footer>
